@@ -14,6 +14,19 @@ const App = () => {
     "?",
     "?"
   ])
+  const handleRestart = () => {
+    setBoard([
+      "?",
+      "?",
+      "?",
+      "?",
+      "?",
+      "?",
+      "?",
+      "?",
+      "?"
+    ])
+  }
   const [treasureLocation, setTreatureLocation] = useState(Math.floor(Math.random() * board.length)) 
   const [bombLocation, setBombLocation] = useState(Math.floor(Math.random() * board.length)) 
 
@@ -48,6 +61,7 @@ const App = () => {
           )
         })}
       </div>
+    <button className="button" onClick={handleRestart}>Play Again</button>
     </>
   )
 }
