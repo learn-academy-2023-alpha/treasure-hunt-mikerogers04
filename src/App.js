@@ -14,19 +14,9 @@ const App = () => {
     "?",
     "?"
   ])
-  const handleRestart = () => {
-    setBoard([
-      "?",
-      "?",
-      "?",
-      "?",
-      "?",
-      "?",
-      "?",
-      "?",
-      "?"
-    ])
-  }
+  
+  const [guess, setGuess] = useState(5)
+
   const [treasureLocation, setTreatureLocation] = useState(Math.floor(Math.random() * board.length)) 
   const [bombLocation, setBombLocation] = useState(Math.floor(Math.random() * board.length)) 
 
@@ -43,12 +33,27 @@ const App = () => {
     }else {
       updatedBoard[index] = "🌴"
       setBoard(updatedBoard)
+      setGuess(guess - 1)
     }
   }
-
+  const handleRestart = () => {
+    setBoard([
+      "?",
+      "?",
+      "?",
+      "?",
+      "?",
+      "?",
+      "?",
+      "?",
+      "?"
+    ])
+  }
+  
   return (
     <>
       <h1>Treasure Hunt Game</h1>
+      <p className="guess">You have {guess} guesses left before game over!</p>
       <div className="gameboard">
         {board.map((value, index) => {
           return (
