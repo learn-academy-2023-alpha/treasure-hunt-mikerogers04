@@ -44,6 +44,12 @@ As a developer, you are tasked with creating a treasure hunt game. The user will
         -Create function that will refresh the gameboard by resetting state value to default
 
 - As a user, I can see a counter that shows how many guesses I have left. The counter starts at five and decrements one every time I click on a square that is not the treasure nor the bomb.
+    Branch: guess-counter
+    -Create an html display on the browser that shows how many guesses the user has left
+    -Create a state value that will hold the guesses
+        -Each time a square is clicked that has a tree emoji, the counter will decrement
+        -display will update how many guesses the user has left
+        
 - As a user, I can see a message informing me that I won the game if I select the square that contains the treasure.
 - As a user, I can see a message informing me that I lost the game if I select the square that contains the bomb.
 - As a user, I cannot continue to play the game after I win or lose.
