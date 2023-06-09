@@ -14,28 +14,40 @@ const App = () => {
     "?",
     "?"
   ])
-  
+  //Set useState for guesses
   const [guess, setGuess] = useState(5)
-
+  //Set useStates for treasure and bomb location, randomizing each location 
   const [treasureLocation, setTreatureLocation] = useState(Math.floor(Math.random() * board.length)) 
   const [bombLocation, setBombLocation] = useState(Math.floor(Math.random() * board.length)) 
 
+  //If treasure and bomb locations randomize to the same square, re-randomize bomb location
+  if(treasureLocation ===  bombLocation){
+    bombLocation = Math.floor(Math.random() * board.length)
+  }
+
   const handleGamePlay = (index) => {
-    // alert(index)
+
     let updatedBoard = [...board]
     //emoji keyboard is cmd+ctrl+space
     if(index === treasureLocation){
       updatedBoard[index] = "💰"
       setBoard(updatedBoard)
-    }else if(index === bombLocation){
+      alert("You win! You found the treasure! To play again, Press Play Again").setTimeout(handleRestart(), 2000)
+    } else if(index === bombLocation){
       updatedBoard[index] = "💣"
       setBoard(updatedBoard)
-    }else {
+      alert("BOOM! You found the bomb, you lose. To play again, Press Play Again").setTimeout(handleRestart(), 2000)
+    } else {
       updatedBoard[index] = "🌴"
       setBoard(updatedBoard)
-      setGuess(guess - 1)
+      if(guess === 0){
+        alert("You have run out of guesses. Try Again.").setTimeout(handleRestart(), 2000)
+      } else{
+        setGuess(guess - 1)
+      }
     }
   }
+  //Function to reset the board if you win, lose, or run out of guesses. Also, reset the number of guesses
   const handleRestart = () => {
     setBoard([
       "?",
@@ -48,6 +60,7 @@ const App = () => {
       "?",
       "?"
     ])
+    setGuess(5)
   }
   
   return (
@@ -66,7 +79,7 @@ const App = () => {
           )
         })}
       </div>
-    <button className="button" onClick={handleRestart}>Play Again</button>
+      <button className="button" onClick={handleRestart}>Play Again</button>
     </>
   )
 }
